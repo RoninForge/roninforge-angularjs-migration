@@ -97,7 +97,7 @@ if [ ! -d "$UPSTREAM" ]; then
         green "RoninForge/awesome-copilot fork exists"
     else
         echo "Forking github/awesome-copilot to RoninForge..."
-        gh repo fork github/awesome-copilot --org RoninForge --clone=false --remote=false
+        gh repo fork github/awesome-copilot --org RoninForge --default-branch-only=false
     fi
     echo "Cloning fork to $UPSTREAM..."
     gh repo clone RoninForge/awesome-copilot "$UPSTREAM"
@@ -111,9 +111,9 @@ fi
 
 step "4: Sync fork with upstream"
 git fetch upstream staged main --quiet
-git checkout staged
-git reset --hard upstream/staged
-git push --force-with-lease origin staged >/dev/null 2>&1 || true
+git fetch origin --quiet
+git checkout -B staged upstream/staged
+git push --force-with-lease origin staged:staged >/dev/null 2>&1 || true
 green "fork synced to upstream/staged"
 
 step "5: Create feature branch"
@@ -177,12 +177,12 @@ case "$TYPE" in
         ;;
 esac
 
-step "7: Run validator"
+step "7: Run validator (skip-regen; submit script does regen itself in step 8)"
 VALIDATOR="$SOURCE_DIR/scripts/validate-awesome-copilot-submission.sh"
 [ -x "$VALIDATOR" ] || err "validator missing or not executable: $VALIDATOR"
 
-if ! "$VALIDATOR" --path "$DST"; then
-    err "Validator failed. Fix issues in $SOURCE_DIR/dist/ and re-run."
+if ! "$VALIDATOR" --path "$DST" --skip-regen; then
+    err "Validator failed on naming/frontmatter/content/CRLF/codespell. Fix in $SOURCE_DIR/dist/ and re-run."
 fi
 
 step "8: Run npm start (regenerate README + marketplace)"
@@ -192,7 +192,7 @@ fi
 npm start --silent 2>&1 | tail -3
 green "regeneration complete"
 
-step "9: git status + commit"
+step "9: git status + commit (includes regenerated catalog)"
 git add -A
 git status --short
 git commit -m "feat($TYPE): add $SLUG ($VERSION)  🤖🤖🤖

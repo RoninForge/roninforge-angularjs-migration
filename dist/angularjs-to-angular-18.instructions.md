@@ -722,7 +722,7 @@ export class CommentComponent {
 }
 ```
 
-WHY: `$sce.trustAsHtml` is AngularJS's escape hatch and a notorious XSS vector; Angular's `DomSanitizer` is the equivalent and similarly dangerous. Sanitise server-side when possible. Source: [Synopsys: Preventing common AngularJS vulnerabilities](https://www.synopsys.com/blogs/software-security/preventing-common-angularjs-vulnerabilities/).
+WHY: `$sce.trustAsHtml` is AngularJS's escape hatch and a notorious XSS vector; Angular's `DomSanitizer` is the equivalent and similarly dangerous. Sanitise server-side when possible. Source: [Angular Security Guide](https://angular.dev/best-practices/security).
 
 #### A-009: Template event handler via `ng-click`
 
@@ -1490,7 +1490,7 @@ export class CommentComponent {
 }
 ```
 
-WHY: `[innerHTML]` runs the sanitiser by default, but explicit sanitisation makes the policy auditable. Source: [Synopsys: Preventing common AngularJS vulnerabilities](https://www.synopsys.com/blogs/software-security/preventing-common-angularjs-vulnerabilities/).
+WHY: `[innerHTML]` runs the sanitiser by default, but explicit sanitisation makes the policy auditable. Source: [Angular Security Guide](https://angular.dev/best-practices/security).
 
 #### B-030: Lazy-loading via `loadChildren` string syntax
 

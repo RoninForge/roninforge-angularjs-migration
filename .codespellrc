@@ -1,0 +1,3 @@
+[codespell]
+skip = .git,node_modules,dist/*.json,research,*.lock
+ignore-words-list = nd,ot,te,thru,ans,fo,ist,bre,fpr,upto,nin,oneline,strat,doubleclick,wee,inout,formattype,addd,vaccum,childs,doi,fals,initialy,outpur,parition,rouge,sectionned,seprately,senario,seperated,seperately,senstive,thirdparty,inteface,strenght,sucess,sucessful,succesful,succesfully,toogle,traction,unkown,visibilty,wether,whith,withing,wont,wsa,recieve,recieved,recieving,seperate,seperator,trasform,thier,thru,sze,calender,exists,resouce,exec,doi,nd

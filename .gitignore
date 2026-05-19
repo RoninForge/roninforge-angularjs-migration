@@ -1,0 +1,12 @@
+node_modules/
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+
+# Internal research notes used to build the instructions (not for public repo)
+research/
+
+# Local working clone of github/awesome-copilot used by submit script
+.upstream-clone/

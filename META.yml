@@ -1,0 +1,25 @@
+slug: angularjs-to-angular-18
+type: instructions
+version: 0.1.0
+
+upstream:
+  repo: github/awesome-copilot
+  base: staged
+
+# Files in dist/ that get rsynced into the upstream tree.
+# For type=instructions, exactly one file at dist/<slug>.instructions.md
+# is copied to instructions/<slug>.instructions.md upstream.
+target_paths:
+  - instructions/angularjs-to-angular-18.instructions.md
+
+description: |
+  Migration guidance for AngularJS 1.x codebases to Angular 18: incremental
+  ngUpgrade hybrid, standalone-default components, signals, control flow,
+  function-based interceptors / guards, provideHttpClient + provideRouter,
+  Vitest. Catches 62 LLM regressions across three modes: AngularJS 1.x patterns
+  emitted for "Angular" requests, Angular 2-17 legacy patterns vs Angular 18
+  idioms, and migration-specific mistakes (big-bang advice without ngUpgrade,
+  literal $rootScope.$broadcast ports, missing downgradeInjectable). Pins
+  AngularJS 1.x is EOL since Dec 31 2021 with unpatched CVE-2024-21490 (ReDoS
+  in ng-srcset) - HeroDevs NES or OpenLogic are the only options to stay
+  patched without migration.
